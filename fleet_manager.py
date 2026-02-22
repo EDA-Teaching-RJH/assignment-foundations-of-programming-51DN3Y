@@ -5,6 +5,7 @@ def main():
     add_member(name, rank, division, id, valid_rank)
     remove_member(name, rank, division, id)
 
+
 def init_database():
     print("Initializing database...")
 
@@ -16,6 +17,7 @@ def init_database():
 
     return name, rank, division, id, valid_rank
     
+
 def display_menu(name, rank, division, id, valid_rank):
     student_name = input("Enter Full Name: ")
     print(f"Welcome, {student_name.upper()}!")
@@ -42,6 +44,8 @@ def display_menu(name, rank, division, id, valid_rank):
         update_rank(rank, id)
     elif opt == 4:
         display_roster(name, rank, division, id)
+    elif opt == 5:
+        search_crew(name, rank, division, id)
 
 
 def add_member(name, rank, division, id, valid_rank):
@@ -67,6 +71,7 @@ def add_member(name, rank, division, id, valid_rank):
 
     print("Crew member added.")
 
+
 def remove_member(name, rank, division, id):
     remove = int(input("Enter ID of crew member to remove: "))
 
@@ -80,6 +85,7 @@ def remove_member(name, rank, division, id):
     else:
         print("ID not found.")
 
+
 def update_rank(rank, id):
     update = int(input("Enter ID of crew member to update rank: "))
 
@@ -92,6 +98,7 @@ def update_rank(rank, id):
     rank[idx] = new_rank
     print("Rank updated.")
 
+
 def display_roster(name, rank, division, id):
     print("NAME                 RANK                      DIVISION        ID")
     print("-------------------------------------------------------------------------")
@@ -99,7 +106,17 @@ def display_roster(name, rank, division, id):
     for i in range(len(name)):
         print(f"{name[i]:20} {rank[i]:25} {division[i]:15} {id[i]}")
 
-#def search_crew(name, rank, division, id):
+
+def search_crew(name, rank, division, id):
+    search = input("Enter name to search: ").lower()
+    found = False
+
+    for i in range(len(name)):
+        if search in name[i].lower():
+            print(f"Name: {name[i]}, {rank[i]}, {division[i]}, ID: {id[i]}")
+            found = True
+    if not found:
+        print("Crew member not found.")
 
 #def filter_by_division(name, division):
 
