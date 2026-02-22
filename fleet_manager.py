@@ -1,7 +1,8 @@
 def main():
     print("Welcome to Fleet Manager System")
-    init_database()
-    display_menu()
+    name, rank, division, id = init_database() 
+    display_menu(name, rank, division, id)
+    add_member(name, rank, division, id)
 
 def init_database():
     print("Initializing database...")
@@ -11,9 +12,9 @@ def init_database():
     division = ["Command", "Operations", "Engineering", "Security", "Science"]
     id = [14571, 23331, 34101, 47741, 58921]
 
-    return (name, rank, division, id)
+    return name, rank, division, id
     
-def display_menu():
+def display_menu(name, rank, division, id):
     student_name = input("Enter Full Name: ")
 
     print(f"Welcome, {student_name.upper()}!")
@@ -27,8 +28,24 @@ def display_menu():
     opt = int(input("Select option: "))
     print(f"Proceeding with option {opt}")  
 
+    if opt == 1:
+        print("Viewing crew...")
+    elif opt == 2:
+        add_member(name, rank, division, id)
 
-#def add_member(name, rank, division, id):
+
+def add_member(name, rank, division, id):
+    new_name = input("Name: ")
+    new_rank = input("Rank: ")
+    new_div = input("Division: ")
+    new_id = int(input("ID: "))
+
+    name.append(new_name)
+    rank.append(new_rank)
+    division.append(new_div)
+    id.append(new_id)
+
+    print("Crew member added.")
 
 #def remove_member(name, rank, division, id):
 
