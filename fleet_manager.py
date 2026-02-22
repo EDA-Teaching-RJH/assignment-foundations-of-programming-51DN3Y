@@ -3,6 +3,7 @@ def main():
     name, rank, division, id, valid_rank = init_database() 
     display_menu(name, rank, division, id, valid_rank)
     add_member(name, rank, division, id, valid_rank)
+    remove_member(name, rank, division, id)
 
 def init_database():
     print("Initializing database...")
@@ -33,6 +34,8 @@ def display_menu(name, rank, division, id, valid_rank):
         print("Viewing crew...")
     elif opt == 2:
         add_member(name, rank, division, id, valid_rank)
+    elif opt == 3:
+        remove_member(name, rank, division, id)
 
 
 def add_member(name, rank, division, id, valid_rank):
@@ -57,9 +60,19 @@ def add_member(name, rank, division, id, valid_rank):
     id.append(new_id)
 
     print("Crew member added.")
-    
 
-#def remove_member(name, rank, division, id):
+def remove_member(name, rank, division, id):
+    remove = int(input("Enter ID of crew member to remove: "))
+
+    if remove in id:
+        idx = id.index(remove)
+        name.pop(idx)
+        rank.pop(idx)
+        division.pop(idx)
+        id.pop(idx)
+        print("Crew member removed.")
+    else:
+        print("ID not found.")
 
 #def update_rank(name, rank, id):
 
