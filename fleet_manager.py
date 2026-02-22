@@ -46,6 +46,8 @@ def display_menu(name, rank, division, id, valid_rank):
         display_roster(name, rank, division, id)
     elif opt == 5:
         search_crew(name, rank, division, id)
+    elif opt == 6:
+        filter_by_division(name, division)
 
 
 def add_member(name, rank, division, id, valid_rank):
@@ -118,7 +120,17 @@ def search_crew(name, rank, division, id):
     if not found:
         print("Crew member not found.")
 
-#def filter_by_division(name, division):
+
+def filter_by_division(name, division):
+    search = input("Enter division to filter by: ").lower()
+    found = False
+
+    for i in range(len(division)):
+        if search in division[i].lower():
+            print(f"Name: {name[i]}, {division[i]}")
+            found = True
+    if not found:
+        print("No crew members found in that division.")
 
 #def calculate_payroll(rank):
 
