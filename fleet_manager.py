@@ -48,6 +48,8 @@ def display_menu(name, rank, division, id, valid_rank):
         search_crew(name, rank, division, id)
     elif opt == 6:
         filter_by_division(name, division)
+    elif opt == 7:
+        calculate_payroll(rank)
 
 
 def add_member(name, rank, division, id, valid_rank):
@@ -136,7 +138,25 @@ def filter_by_division(name, division):
     if not found:
             print("No crew members found in that division.")
 
-#def calculate_payroll(rank):
+def calculate_payroll(rank):
+    value = 0
+    for r in rank:
+        if r == "Captain":
+            print("Captain found. \n Adding £80,000 to payroll.")
+            value = value + 80000
+        elif r == "Commander":
+            print("Commander found. \n Adding £60,000 to payroll.")
+            value = value + 60000
+        elif r == "Lieutenant Commander":
+            print("Lieutenant Commander found. \n Adding £50,000 to payroll.")
+            value = value + 50000
+        elif r == "Lieutenant":
+            print("Lieutenant found. \n Adding £40,000 to payroll.")
+            value = value + 40000
+        elif r == "Science Officer":
+            print("Science Officer found. \n Adding £45,000 to payroll.")
+            value = value + 45000
+    print(f"Total payroll: £{value}")
 
 #def count_officers(rank):
 
