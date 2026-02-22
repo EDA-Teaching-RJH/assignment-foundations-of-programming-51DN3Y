@@ -122,15 +122,19 @@ def search_crew(name, rank, division, id):
 
 
 def filter_by_division(name, division):
-    search = input("Enter division to filter by: ").lower()
-    found = False
+    search = input("Enter division (Command, Operations, or Sciences): ")
 
+    while search not in ["Command", "Operations", "Sciences"]:
+        print("Invalid division. Please enter Command, Operations, or Sciences.")
+        search = input("Enter division (Command, Operations, or Sciences): ")
+    
+    found = False
     for i in range(len(division)):
-        if search in division[i].lower():
+        if division[i] == search:
             print(f"Name: {name[i]}, {division[i]}")
             found = True
     if not found:
-        print("No crew members found in that division.")
+            print("No crew members found in that division.")
 
 #def calculate_payroll(rank):
 
