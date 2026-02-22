@@ -1,8 +1,8 @@
 def main():
     print("Welcome to Fleet Manager System")
-    name, rank, division, id = init_database() 
-    display_menu(name, rank, division, id)
-    add_member(name, rank, division, id)
+    name, rank, division, id, valid_rank = init_database() 
+    display_menu(name, rank, division, id, valid_rank)
+    add_member(name, rank, division, id, valid_rank)
 
 def init_database():
     print("Initializing database...")
@@ -11,10 +11,11 @@ def init_database():
     rank = ["Captain", "Commander", "Lieutenant Commander", "Lieutenant", "Science Officer"]
     division = ["Command", "Operations", "Engineering", "Security", "Science"]
     id = [14571, 23331, 34101, 47741, 58921]
+    valid_rank = ["Captain", "Commander", "Lieutenant Commander", "Lieutenant", "Science Officer"]
 
-    return name, rank, division, id
+    return name, rank, division, id, valid_rank
     
-def display_menu(name, rank, division, id):
+def display_menu(name, rank, division, id, valid_rank):
     student_name = input("Enter Full Name: ")
 
     print(f"Welcome, {student_name.upper()}!")
@@ -31,14 +32,24 @@ def display_menu(name, rank, division, id):
     if opt == 1:
         print("Viewing crew...")
     elif opt == 2:
-        add_member(name, rank, division, id)
+        add_member(name, rank, division, id, valid_rank)
 
 
-def add_member(name, rank, division, id):
+def add_member(name, rank, division, id, valid_rank):
     new_name = input("Name: ")
     new_rank = input("Rank: ")
     new_div = input("Division: ")
     new_id = int(input("ID: "))
+
+    while new_id in id:
+        print("ID already exists. Please enter a unique ID.")
+        new_id = int(input("ID: "))
+
+    while new_rank not in valid_rank:
+        print("Invalid rank. Valid ranks are: ")
+        for r in valid_rank:
+            print("- " + r)
+        new_rank = input("Rank: ")
 
     name.append(new_name)
     rank.append(new_rank)
@@ -46,6 +57,7 @@ def add_member(name, rank, division, id):
     id.append(new_id)
 
     print("Crew member added.")
+    
 
 #def remove_member(name, rank, division, id):
 
