@@ -18,24 +18,28 @@ def init_database():
     
 def display_menu(name, rank, division, id, valid_rank):
     student_name = input("Enter Full Name: ")
-
     print(f"Welcome, {student_name.upper()}!")
+
     print("\n--- MENU ---")
-    print("1. View Crew")
-    print("2. Add Crew")
-    print("3. Remove Crew")
-    print("4. Analyze Data")
-    print("5. Exit")
+    print("1. Add Crew")
+    print("2. Remove Crew")
+    print("3. Update Rank")
+    print("4. Display Roster")
+    print("5. Search Crew")
+    print("6. Filter by Division")
+    print("7. Calculate Payroll")
+    print("8. Count Officers")
+    print("9. Exit")
 
     opt = int(input("Select option: "))
-    print(f"Proceeding with option {opt}")  
+    print(f"Proceeding with option {opt}...")  
 
     if opt == 1:
-        print("Viewing crew...")
-    elif opt == 2:
         add_member(name, rank, division, id, valid_rank)
-    elif opt == 3:
+    elif opt == 2:
         remove_member(name, rank, division, id)
+    elif opt == 3:
+        update_rank(rank, id)
 
 
 def add_member(name, rank, division, id, valid_rank):
@@ -74,7 +78,17 @@ def remove_member(name, rank, division, id):
     else:
         print("ID not found.")
 
-#def update_rank(name, rank, id):
+def update_rank(rank, id):
+    update = int(input("Enter ID of crew member to update rank: "))
+
+    while update not in id:
+        print("ID not found. Please enter a valid ID.")
+        update = int(input("Enter ID of crew member to update rank: "))
+        
+    idx = id.index(update)
+    new_rank = input("New Rank: ")
+    rank[idx] = new_rank
+    print("Rank updated.")
 
 #def display_roster(name, rank, division, id):
     #for i in range(len(name)):
