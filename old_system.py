@@ -24,15 +24,15 @@ def run_system_monolith():
         print("4. Analyze Data")
         print("5. Exit")
         
-        opt = input("Select option: ")
+        opt = int(input("Select option: "))
         
-        if opt == "1":  
+        if opt == 1:  
             print("Current Crew List:")
             
             for i in range(len(n)):
                 print(n[i] + " - " + r[i]) 
                 
-        elif opt == "2":
+        elif opt == 2:
             new_name = input("Name: ")
             new_rank = input("Rank: ")
             new_div = input("Division: ")
@@ -43,7 +43,7 @@ def run_system_monolith():
             d.append(new_div)
             print("Crew member added.")
             
-        elif opt == "3":
+        elif opt == 3:
             rem = input("Name to remove: ")
             try:
                 idx = n.index(rem)
@@ -54,7 +54,7 @@ def run_system_monolith():
             except ValueError:
                 print("Name not found.")
             
-        elif opt == "4":
+        elif opt == 4:
             print("Analyzing...")
             count = 0
             
@@ -63,7 +63,7 @@ def run_system_monolith():
                     count = count + 1
             print("High ranking officers: " , count) 
             
-        elif opt == "5":
+        elif opt == 5:
             print("Shutting down.")
             break
             
