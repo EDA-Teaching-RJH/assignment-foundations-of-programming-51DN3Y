@@ -50,6 +50,13 @@ def display_menu(name, rank, division, id, valid_rank):
         filter_by_division(name, division)
     elif opt == 7:
         calculate_payroll(rank)
+    elif opt == 8:
+        count_officers(rank)
+    elif opt == 9:
+        print("Exiting program. Goodbye!")
+    else:
+        print("Invalid option. Please select a valid option from the menu.")
+        display_menu(name, rank, division, id, valid_rank)
 
 
 def add_member(name, rank, division, id, valid_rank):
@@ -158,6 +165,12 @@ def calculate_payroll(rank):
             value = value + 45000
     print(f"Total payroll: £{value}")
 
-#def count_officers(rank):
+
+def count_officers(rank):
+    count = 0
+    for r in rank:
+        if r == "Commander" or r == "Captain":
+            count = count + 1
+    print(f"Number of Commanders and Captains: {count}")
 
 main()
