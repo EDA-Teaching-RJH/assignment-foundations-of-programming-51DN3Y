@@ -1,8 +1,3 @@
-name = ["Picard", "Riker", "Data", "Worf", "Spock"]
-rank = ["Captain", "Commander", "Lieutenant Commander", "Lieutenant", "Science Officer"]
-division = ["Command", "Operations", "Engineering", "Security", "Science"]
-id = [14571, 23331, 34101, 47741, 58921]
-
 def main():
     print("Welcome to Fleet Manager System")
     init_database()
@@ -10,10 +5,14 @@ def main():
 
 def init_database():
     print("Initializing database...")
-    
-    for i in range(len(name)):
-        print(name[i] + " - " + rank[i] + " - " + division[i] + " - ID: " + str(id[i])) 
 
+    name = ["Picard", "Riker", "Data", "Worf", "Spock"]
+    rank = ["Captain", "Commander", "Lieutenant Commander", "Lieutenant", "Science Officer"]
+    division = ["Command", "Operations", "Engineering", "Security", "Science"]
+    id = [14571, 23331, 34101, 47741, 58921]
+
+    return (name, rank, division, id)
+    
 def display_menu():
     student_name = input("Enter Full Name: ")
 
@@ -26,7 +25,25 @@ def display_menu():
     print("5. Exit")
 
     opt = int(input("Select option: "))
-    print(f"Proceeding with option {opt}")      
+    print(f"Proceeding with option {opt}")  
 
+
+#def add_member(name, rank, division, id):
+
+#def remove_member(name, rank, division, id):
+
+#def update_rank(name, rank, id):
+
+#def display_roster(name, rank, division, id):
+    #for i in range(len(name)):
+        #print(name[i] + " - " + rank[i] + " - " + division[i] + " - ID: " + str(id[i])) 
+
+#def search_crew(name, rank, division, id):
+
+#def filter_by_division(name, division):
+
+#def calculate_payroll(rank):
+
+#def count_officers(rank):
 
 main()
