@@ -1,3 +1,6 @@
+from unicodedata import name
+
+
 def main():
     print("Welcome to Fleet Manager System")
     name, rank, division, id, valid_rank = init_database() 
@@ -40,6 +43,8 @@ def display_menu(name, rank, division, id, valid_rank):
         remove_member(name, rank, division, id)
     elif opt == 3:
         update_rank(rank, id)
+    elif opt == 4:
+        display_roster(name, rank, division, id)
 
 
 def add_member(name, rank, division, id, valid_rank):
@@ -90,9 +95,12 @@ def update_rank(rank, id):
     rank[idx] = new_rank
     print("Rank updated.")
 
-#def display_roster(name, rank, division, id):
-    #for i in range(len(name)):
-        #print(name[i] + " - " + rank[i] + " - " + division[i] + " - ID: " + str(id[i])) 
+def display_roster(name, rank, division, id):
+    print("NAME                 RANK                      DIVISION       ID")
+    print("-------------------------------------------------------------------------")
+    
+    for i in range(len(name)):
+        print(f"{name[i]:20} {rank[i]:25} {division[i]:15} {id[i]}")
 
 #def search_crew(name, rank, division, id):
 
