@@ -26,12 +26,7 @@ def display_menu():
     print("5. Exit")
 
     opt = int(input("Select option: "))
-    confirm = input(f"You selected option {opt}. Is that correct? (Y/N) ").upper()
-    
-    while confirm == "Y":
-        print(f"Proceeding with option {opt}")      
-    else:
-        print("Operation cancelled.")
-        display_menu()
+    print(f"Proceeding with option {opt}")      
+
 
 main()
