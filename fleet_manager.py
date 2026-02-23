@@ -1,13 +1,13 @@
 def main():
-    print("Welcome to Fleet Manager System")
-    name, rank, division, id, valid_rank = init_database() 
-    display_menu(name, rank, division, id, valid_rank)
-    add_member(name, rank, division, id, valid_rank)
-    remove_member(name, rank, division, id)
+    print("\nWelcome to Fleet Manager System")
+    name, rank, division, id, valid_rank, student_name = init_database() 
+    display_menu(name, rank, division, id, valid_rank, student_name)
 
 
 def init_database():
     print("Initializing database...")
+    student_name = input("\nEnter Full Name: ")
+    print(f"\nWelcome, {student_name.upper()}! \nLoading menu...",)
 
     name = ["Picard", "Riker", "Data", "Worf", "Spock"]
     rank = ["Captain", "Commander", "Lieutenant Commander", "Lieutenant", "Science Officer"]
@@ -15,13 +15,10 @@ def init_database():
     id = [14571, 23331, 34101, 47741, 58921]
     valid_rank = ["Captain", "Commander", "Lieutenant Commander", "Lieutenant", "Science Officer"]
 
-    return name, rank, division, id, valid_rank
+    return name, rank, division, id, valid_rank, student_name
     
 
-def display_menu(name, rank, division, id, valid_rank):
-    student_name = input("Enter Full Name: ")
-    print(f"Welcome, {student_name.upper()}!")
-
+def display_menu(name, rank, division, id, valid_rank, student_name):
     print("\n--- MENU ---")
     print("1. Add Crew")
     print("2. Remove Crew")
@@ -34,30 +31,40 @@ def display_menu(name, rank, division, id, valid_rank):
     print("9. Exit")
 
     opt = int(input("Select option: "))
-    print(f"Proceeding with option {opt}...")  
+    print(f"\nProceeding with option {opt}...\n")  
 
-    if opt == 1:
-        add_member(name, rank, division, id, valid_rank)
-    elif opt == 2:
-        remove_member(name, rank, division, id)
-    elif opt == 3:
-        update_rank(rank, id)
-    elif opt == 4:
-        display_roster(name, rank, division, id)
-    elif opt == 5:
-        search_crew(name, rank, division, id)
-    elif opt == 6:
-        filter_by_division(name, division)
-    elif opt == 7:
-        calculate_payroll(rank)
-    elif opt == 8:
-        count_officers(rank)
-    elif opt == 9:
-        print("Exiting program. Goodbye!")
-    else:
-        print("Invalid option. Please select a valid option from the menu.")
-        display_menu(name, rank, division, id, valid_rank)
-
+    while opt != 9:
+        if opt == 1:
+            add_member(name, rank, division, id, valid_rank)
+            display_menu(name, rank, division, id, valid_rank, student_name)
+        elif opt == 2:
+            remove_member(name, rank, division, id)
+            display_menu(name, rank, division, id, valid_rank, student_name)
+        elif opt == 3:
+            update_rank(rank, id)
+            display_menu(name, rank, division, id, valid_rank, student_name)
+        elif opt == 4:
+            display_roster(name, rank, division, id)
+            display_menu(name, rank, division, id, valid_rank, student_name)
+        elif opt == 5:
+            search_crew(name, rank, division, id)
+            display_menu(name, rank, division, id, valid_rank, student_name)
+        elif opt == 6:
+            filter_by_division(name, division)
+            display_menu(name, rank, division, id, valid_rank, student_name)
+        elif opt == 7:
+            calculate_payroll(rank)
+            display_menu(name, rank, division, id, valid_rank, student_name)
+        elif opt == 8:
+            count_officers(rank)
+            display_menu(name, rank, division, id, valid_rank, student_name)
+        else:
+            print("\n**Invalid option. Please select a valid option from the menu.**")
+            display_menu(name, rank, division, id, valid_rank, student_name)
+    
+    print("Exiting Program, Goodbye!")
+    
+    
 
 def add_member(name, rank, division, id, valid_rank):
     new_name = input("Name: ")
@@ -119,12 +126,12 @@ def display_roster(name, rank, division, id):
 
 
 def search_crew(name, rank, division, id):
-    search = input("Enter name to search: ").lower()
+    search = input("Enter name to search: \n").lower()
     found = False
 
     for i in range(len(name)):
         if search in name[i].lower():
-            print(f"Name: {name[i]}, {rank[i]}, {division[i]}, ID: {id[i]}")
+            print(f"{name[i]}, {rank[i]}, {division[i]}, ID: {id[i]}")
             found = True
     if not found:
         print("Crew member not found.")
@@ -147,6 +154,7 @@ def filter_by_division(name, division):
 
 def calculate_payroll(rank):
     value = 0
+
     for r in rank:
         if r == "Captain":
             print("Captain found. \n Adding £80,000 to payroll.")
@@ -163,6 +171,7 @@ def calculate_payroll(rank):
         elif r == "Science Officer":
             print("Science Officer found. \n Adding £45,000 to payroll.")
             value = value + 45000
+
     print(f"Total payroll: £{value}")
 
 
