@@ -1,7 +1,30 @@
 def main():
     print("\nWelcome to Fleet Manager System")
     name, rank, division, id, valid_rank, student_name = init_database() 
-    display_menu(name, rank, division, id, valid_rank, student_name)
+
+    while True:
+        opt = display_menu()
+        if opt == 1:
+            add_member(name, rank, division, id, valid_rank)
+        elif opt == 2:
+            remove_member(name, rank, division, id)
+        elif opt == 3:
+            update_rank(rank, id)
+        elif opt == 4:
+            display_roster(name, rank, division, id)
+        elif opt == 5:
+            search_crew(name, rank, division, id)
+        elif opt == 6:
+            filter_by_division(name, division)
+        elif opt == 7:
+            calculate_payroll(rank)
+        elif opt == 8:
+            count_officers(rank)
+        elif opt == 9:
+            print("Exiting program. Goodbye!")
+            break
+        else:
+            print("\n**Invalid option. Please select a valid option from the menu.**")
 
 
 def init_database():
@@ -18,7 +41,7 @@ def init_database():
     return name, rank, division, id, valid_rank, student_name
     
 
-def display_menu(name, rank, division, id, valid_rank, student_name):
+def display_menu():
     print("\n--- MENU ---")
     print("1. Add Crew")
     print("2. Remove Crew")
@@ -30,41 +53,12 @@ def display_menu(name, rank, division, id, valid_rank, student_name):
     print("8. Count Officers")
     print("9. Exit")
 
-    opt = int(input("Select option: "))
-    print(f"\nProceeding with option {opt}...\n")  
-
-    while opt != 9:
-        if opt == 1:
-            add_member(name, rank, division, id, valid_rank)
-            display_menu(name, rank, division, id, valid_rank, student_name)
-        elif opt == 2:
-            remove_member(name, rank, division, id)
-            display_menu(name, rank, division, id, valid_rank, student_name)
-        elif opt == 3:
-            update_rank(rank, id)
-            display_menu(name, rank, division, id, valid_rank, student_name)
-        elif opt == 4:
-            display_roster(name, rank, division, id)
-            display_menu(name, rank, division, id, valid_rank, student_name)
-        elif opt == 5:
-            search_crew(name, rank, division, id)
-            display_menu(name, rank, division, id, valid_rank, student_name)
-        elif opt == 6:
-            filter_by_division(name, division)
-            display_menu(name, rank, division, id, valid_rank, student_name)
-        elif opt == 7:
-            calculate_payroll(rank)
-            display_menu(name, rank, division, id, valid_rank, student_name)
-        elif opt == 8:
-            count_officers(rank)
-            display_menu(name, rank, division, id, valid_rank, student_name)
-        else:
-            print("\n**Invalid option. Please select a valid option from the menu.**")
-            display_menu(name, rank, division, id, valid_rank, student_name)
-    
-    print("Exiting Program, Goodbye!")
-    
-    
+    try:
+        opt = int(input("Select option: "))
+    except ValueError:
+        opt = 0  
+    print(f"\nProceeding with option {opt}...\n")
+    return opt
 
 def add_member(name, rank, division, id, valid_rank):
     new_name = input("Name: ")
@@ -151,6 +145,7 @@ def filter_by_division(name, division):
             found = True
     if not found:
             print("No crew members found in that division.")
+
 
 def calculate_payroll(rank):
     value = 0
